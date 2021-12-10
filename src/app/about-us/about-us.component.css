@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400&display=swap');
+*{
+    margin:0px;
+    padding:0px;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.section{
+    width: 100%;
+}
+
+.section .container{
+    width: 80%;
+    display: block;
+    margin: 0px auto;
+    padding: 50px 0px;
+}
+
+.container .title{
+    width: 100%;
+    text-align: center;
+    margin-bottom: 3%;
+}
+
+.container .title h1{
+    text-transform: uppercase;
+    font-size: 40px;
+    color: #88941e;
+}
+
+.container .title h1::after{
+    content:"";
+    height: 5px;
+    width: 100px;
+    background: #c4d156;
+    border-radius: 25px;
+    display: block;
+    margin: auto;
+}
+
+.image-section-left{
+    float: left;
+    width: 40%;
+}
+
+.image-section-right{
+    float: right;
+    width: 40%;
+}
+
+.image-section-left img, .image-section-right img{
+    height: auto;
+    width: 100%;
+}
+
+.article h3, .article h3{
+    color: #a3a3a3;
+    font-size: 25px;
+}
+
+.article p, .article p{
+    margin-top: 20px;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+}
+
+.container .social{
+    width: 100%;
+    clear: both;
+    margin-top: 30px;
+    text-align: center;
+    display: inline-block;
+    margin-bottom: 2%;
+}
+.container .social i{
+    color: #fff;
+    font-size: 22px;
+    height: 45px;
+    width: 45px;
+    border-radius: 45px;
+    line-height: 45px;
+    text-align: center;
+    background-color: #f28f92;
+    margin: 0px;
+}
+
+.container .social i:hover{
+    color:#fff;
+    background-color: #88941e;
+    transition: 1s ease;
+    transform: rotate(360deg);
+}
+
+@media screen and (max-width: 768px){
+    .section .container{
+        width:80%;
+        display: block;
+        margin:auto;
+    }
+
+    .image-section-left, .image-section.right{
+        float:none;
+        width:100%;
+        margin-top: 50px;
+    }
+
+    .image-section-left img, .image-section-right img{
+        width:100%;
+        height: auto;
+        display: block;
+        margin: auto;
+    }
+
+    .container .title h1{
+        text-align: center;
+        font-size:30px;
+    }
+    .container .social i{
+        font-size: 19px;
+        height: 35px;
+        width: 35px;
+        line-height: 35px;
+    }
+}

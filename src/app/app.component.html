@@ -1,0 +1,168 @@
+<nav class="navbar navbar-expand-lg navbar-light sticky-top shadow" style="background-color: rgba(255,255,255,0.7);">
+    <div class="container px-2 py-1">
+        <a class="navbar-brand fw-bold" href="#" style="font-size: 20px"><img src="https://as2.ftcdn.net/v2/jpg/01/25/57/91/500_F_125579108_cKIL8gnBgRKqcLeyG03llZNaeFOjoCLH.jpg" style="border-radius: 25px;" width="45" height="45">Cinema231</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav text-center ms-auto me-4 my-3 my-lg-0">
+                <li *ngIf="tab==1" class="nav-item me-3 mt-1">
+                    <div class="input-group">
+                        <input style="border-top-left-radius: 30px; border-bottom-left-radius: 30px" type="search" class="form-control" placeholder="Search Movie's Title"  id="cariJudul"/>
+                        <button style="border-top-right-radius: 30px; border-bottom-right-radius: 30px" class="btn btn-outline-success" type="button" id="tombolCari" (click)="search()"><i class="bi bi-search"></i></button>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <div class="btn-group" style="display: block">
+                        <a type="button" class="btn nav-link" id="dropdownBtn" style="font-size: 20px; margin-bottom:-2%;">Hi, {{ username }}<i class="bi bi-chevron-down"></i> </a>
+                        <div id="options" style="width: 100%; margin: auto; display: none; overflow: visible">
+                            <hr class="dropdown-divider">
+                            <a href="#" class="nav-link" (click)="tab=1">Movies</a>
+                            <a href="#" class="nav-link" (click)="showMovieFav()">Favorite</a>
+                            <a href="#" class="nav-link" (click)="tab=2">About Us</a>
+                            <hr class="dropdown-divider">
+                            <a id="reload" class="nav-link" style="font-size: 20px;" type="button" (click)="logout()">Log Out</a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div *ngIf="tab==1" label = "Tab 1">
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-lg-4">
+                <div class="input-group">
+                    <input style="border-top-left-radius: 30px; border-bottom-left-radius: 30px" type="number" min="1000" max="2022" class="form-control" placeholder="Year" [(ngModel)]="year" id="year"/>
+                    <button class="btn btn-outline-success" type="button" id="tombolCari" (click)="search()"><i class="bi bi-search"></i></button>
+                    <button style="border-top-right-radius: 30px; border-bottom-right-radius: 30px" class="btn btn-outline-secondary" type="button" id="tombolReset" (click)="reset()"><i class="bi bi-calendar-x"></i> Reset</button>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <br>
+            </div>
+            <div class="col-lg-5">
+                <div class="row">
+                    <div class="col-7 d-flex justify-content-center mt-2">
+                            <input type="range" class="slider" [(ngModel)]="rating" value="10" min="1" max="10" id="rating">
+                    </div>
+                    <div class="col-5 d-flex justify-content-center">
+                        <button style="border-radius: 30px" class="btn btn-outline-success" type="button" id="tombolCari" (click)="search()"><i class="bi bi-search"></i> Rating <= {{rating}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <h3 class="upcoming">Upcoming Movie Trailers</h3>
+        <div class="scrollmenu">
+            <div class="embed-responsive iframe">
+                <iframe id="ytplayer" type="text/html" width="480" height="320" class="video embed-responsive-item"
+                    src="https://www.youtube.com/embed/JfVOs4VSpmA?autoplay=1"
+                    frameborder="0">
+                </iframe>
+            </div>
+            <div class="embed-responsive iframe">
+                <iframe id="ytplayer" type="text/html" width="480" height="320" class="video embed-responsive-item"
+                    src="https://www.youtube.com/embed/hnBzcLQUhYQ?autoplay=1"
+                    frameborder="0" >
+                </iframe>
+            </div>
+            <div class="embed-responsive iframe">
+                <iframe id="ytplayer" type="text/html" width="480" height="320" class="video embed-responsive-item"
+                    src="https://www.youtube.com/embed/oZ6iiRrz1SY?autoplay=1"
+                    frameborder="0" >
+                </iframe>
+            </div>
+            <div class="embed-responsive iframe">
+                <iframe id="ytplayer" type="text/html" width="480" height="320" class="video embed-responsive-item"
+                    src="https://www.youtube.com/embed/5zdBG-iGfes?autoplay=1"
+                    frameborder="0" >
+                </iframe>
+            </div>
+        </div>
+        <hr>
+            <div class="row" id="daftarmovie">
+                <app-movie-card *ngFor="let mCard of mCards" [mCard]="mCard" (mID)="showModal($event)"></app-movie-card>
+            </div>
+        </div>
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" style="border-radius: 25px">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">{{ title }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" style="padding: 2% 0 2% 0">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img style="border-radius: 30px" src = {{poster_path}} class="img-fluid">
+                            </div>
+                            <div class="col-md-8 mt-2" style="border-left: 1px solid grey;">
+                                <ul class="list-group" style="border: none;">
+                                    <li class="list-group-item" style="border: none;">Release Date: {{ release_date }}</li>
+                                    <li class="list-group-item" style="border: none;">Overview: {{ overview }}</li>
+                                    <li class="list-group-item" style="border: none;">Language: {{ original_language }}</li>
+                                    <li class="list-group-item" style="border: none;">Popularity: {{ popularity }}</li>
+                                    <li class="list-group-item" style="border: none;">Votes: {{ vote_count }}</li>
+                                    <li class="list-group-item" style="border: none;">Rating: {{ vote_average }}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="tab==2" label ="Tab 2">
+    <app-about-us></app-about-us>
+</div>
+
+<div *ngIf="tab==3" label = "Tab 3">
+    <div class="container">
+        <div class="row mt-5"></div>
+        <hr>
+        <div class="row" id="daftarmovie">
+            <app-movie-card *ngFor="let mCard of mCardsFav" [mCard]="mCard" (mID)="showModal($event)"></app-movie-card>
+        </div>
+        </div>
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" style="border-radius: 25px">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">{{ title }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" style="padding: 2% 0 2% 0">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img style="border-radius: 30px" src = {{poster_path}} class="img-fluid">
+                            </div>
+                            <div class="col-md-8" style="border-left: 1px solid grey;">
+                                <ul class="list-group" style="border: none;">
+                                    <li class="list-group-item" style="border: none;">Release Date: {{ release_date }}</li>
+                                    <li class="list-group-item" style="border: none;">Overview: {{ overview }}</li>
+                                    <li class="list-group-item" style="border: none;">Language: {{ original_language }}</li>
+                                    <li class="list-group-item" style="border: none;">Popularity: {{ popularity }}</li>
+                                    <li class="list-group-item" style="border: none;">Votes: {{ vote_count }}</li>
+                                    <li class="list-group-item" style="border: none;">Rating: {{ vote_average }}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-login></app-login>
+
+<router-outlet></router-outlet>

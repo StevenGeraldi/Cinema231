@@ -1,0 +1,91 @@
+<link rel="stylesheet" href="login.component.css">
+
+<div class="modal fade " id="login" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="login" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link text" href="#" (click)="tab=1"><b>Login</b></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text" href="#" (click)="tab=2"><b>Register</b></a>
+                    </li>
+                </ul>
+            </div>
+            <div *ngIf="tab==1" label="Login">
+                <div class="modal-body">
+                    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                        <div class="form-group">
+                            <label for="email" class="forLabel text">Email: </label>
+                            <input id="iEmail" type="text" formControlName="email" class="form-control forInput" [ngClass]="{ 'is-invalid': submitted && f['email'].errors }" />
+                            <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+                                <div *ngIf="f['email'].errors['required']">Email Field Cannot Be Empty</div>
+                                <div *ngIf="f['email'].errors['email']">Must Enter A Valid Email</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="forLabel text">Password: </label>
+                            <input id="iPassword" type="password" formControlName="password" class="form-control forInput" [ngClass]="{ 'is-invalid': submitted && f['password'].errors }" />
+                            <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+                                <div *ngIf="f['password'].errors['required']">Password Field Cannot Be Empty</div>
+                                <div *ngIf="f['password'].errors['minlength']">The Minimum Password Length is 3 Character</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary forSubmit">Login</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div *ngIf="tab==2" label="regis">
+                <div class="modal-body">
+                    <form [formGroup]="loginForm2" (ngSubmit)="onSubmit2()">
+                        <div class="form-group">
+                            <label for="fname" class="forLabel text">First Name: </label>
+                            <input type="text" formControlName="fname" class="form-control forInput" [ngClass]="{ 'is-invalid': submitted && fu['fname'].errors }" />
+                            <div *ngIf="submitted && fu['fname'].errors" class="invalid-feedback">
+                                <div *ngIf="fu['fname'].errors['required']">First Name Field Cannot Be Empty</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="lname" class="forLabel text">Last Name: </label>
+                            <input type="text" formControlName="lname" class="form-control forInput" [ngClass]="{ 'is-invalid': submitted && fu['lname'].errors }" />
+                            <div *ngIf="submitted && fu['lname'].errors" class="invalid-feedback">
+                                <div *ngIf="fu['lname'].errors['required']">Last Name Field Cannot Be Empty</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="username" class="forLabel text">Username: </label>
+                            <input type="text" formControlName="username" class="form-control forInput" [ngClass]="{ 'is-invalid': submitted && fu['username'].errors }" />
+                            <div *ngIf="submitted && fu['username'].errors" class="invalid-feedback">
+                                <div *ngIf="fu['username'].errors['required']">Username Field Cannot Be Empty</div>
+                                <div *ngIf="fu['username'].errors['minlength']">The Minimum Password Length is 3 Character</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="forLabel text">Email: </label>
+                            <input type="text" formControlName="email" class="form-control forInput" [ngClass]="{ 'is-invalid': submitted && fu['email'].errors }" />
+                            <div *ngIf="submitted && fu['email'].errors" class="invalid-feedback">
+                                <div *ngIf="fu['email'].errors['required']">Email Field Cannot Be Empty</div>
+                                <div *ngIf="fu['email'].errors['email']">Enter A Valid Email</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="forLabel text">Password: </label>
+                            <input type="password" formControlName="password" class="form-control forInput" [ngClass]="{ 'is-invalid': submitted && fu['password'].errors }" />
+                            <div *ngIf="submitted && fu['password'].errors" class="invalid-feedback">
+                                <div *ngIf="fu['password'].errors['required']">Password Field Cannot Be Empty</div>
+                                <div *ngIf="fu['password'].errors['minlength']">The Minimum Password Length is 3 Character</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary forSubmit">Register</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+
+.forLabel{
+    margin-left: 1%;
+    margin-right: 2%;
+}
+
+.forInput{
+    margin-bottom: 2%;
+    border-radius: 30px;
+}
+
+.forSubmit{
+    margin-top: 2%;
+    width: 100%;
+    background-color: #336699;
+    color: white;
+    border-radius: 30px;
+}
+
+.forSubmit:hover{
+    margin-top: 2%;
+    background-color: #fafafa;
+    color: #336699;
+    border-radius: 30px;
+    font-weight: bold;
+}
+
+.text{
+    color: #336699;
+}
